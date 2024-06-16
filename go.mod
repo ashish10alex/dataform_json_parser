@@ -1,4 +1,4 @@
-module dataform_json_parser
+module github.com/ashish10alex/dataform_json_parser
 
 go 1.21.0
 
