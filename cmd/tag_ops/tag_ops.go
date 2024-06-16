@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"dataform_json_parser/cmd"
+	"github.com/ashish10alex/dataform_json_parser/cmd"
 	"fmt"
 
 	"github.com/spf13/cobra"

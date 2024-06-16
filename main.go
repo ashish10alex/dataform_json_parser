@@ -4,9 +4,9 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package main
 
 import (
-	"dataform_json_parser/cmd"
-	_ "dataform_json_parser/cmd/table_ops"
-	_ "dataform_json_parser/cmd/tag_ops"
+	"github.com/ashish10alex/dataform_json_parser/cmd"
+	_ "github.com/ashish10alex/dataform_json_parser/cmd/table_ops"
+	_ "github.com/ashish10alex/dataform_json_parser/cmd/tag_ops"
 )
 
 func main() {
