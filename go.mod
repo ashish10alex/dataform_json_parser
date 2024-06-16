@@ -1,4 +1,4 @@
-module github.com/ashish10alex/dataform_json_parser
+module github.com/ashish10alex/dj
 
 go 1.21.0
 

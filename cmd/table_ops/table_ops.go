@@ -4,7 +4,7 @@ Copyright © 2024 Ashish Alex
 package cmd
 
 import (
-	"github.com/ashish10alex/dataform_json_parser/cmd"
+	"github.com/ashish10alex/dj/cmd"
 	"fmt"
 	"log"
 	"time"
