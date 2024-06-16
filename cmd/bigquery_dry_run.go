@@ -1,11 +1,12 @@
 package cmd
 
 import (
-	"cloud.google.com/go/bigquery"
 	"context"
-	"google.golang.org/api/option"
 	"io"
 	"log"
+	"time"
+	"cloud.google.com/go/bigquery"
+	"google.golang.org/api/option"
 )
 
 func createBigQueryClient(ctx context.Context, projectId string, keyfile string) (*bigquery.Client, error) {
@@ -22,6 +23,7 @@ func queryDryRun(w io.Writer, query *string, projectId string, keyfile string, l
 	var client *bigquery.Client
 	var err error
 
+
 	client, err = createBigQueryClient(ctx, projectId, keyfile)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
@@ -32,16 +34,24 @@ func queryDryRun(w io.Writer, query *string, projectId string, keyfile string, l
 	q.DisableQueryCache = false
 	q.Location = location
 
-	job, err := q.Run(ctx)
-	if err != nil {
-		return 0., err
-	}
+    for i:=0; i < 2; i++ {
+        ctx, cancel := context.WithTimeout(ctx, 3 * time.Second)
+        defer cancel()
 
-	status := job.LastStatus()
-	if err := status.Err(); err != nil {
-		return 0., err
-	}
-	bytes_processed := float32(status.Statistics.TotalBytesProcessed)
-	return bytes_processed, err
+        job, err := q.Run(ctx)
 
+        if err == nil {
+            status := job.LastStatus()
+            if err := status.Err(); err != nil {
+                return 0., err
+            }
+            bytes_processed := float32(status.Statistics.TotalBytesProcessed)
+            return bytes_processed, err
+        }
+
+        if i==1 {
+            return 0.,err
+        }
+    }
+    return 0., err
 }
