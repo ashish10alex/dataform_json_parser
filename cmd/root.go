@@ -6,9 +6,9 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"os"
-
+	"github.com/ashish10alex/dj/internal/version"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 const COST_IN_POUNDS_FOR_TERRABYTE float32 = 4.9
@@ -18,6 +18,7 @@ var location string
 var KeyFile string
 var getGcpProjectId bool
 var getGitRepository bool
+var getVersionInfo bool
 var ErrorTableNotFound = errors.New("Table not found")
 
 // rootCmd represents the base command when called without any subcommands
@@ -30,21 +31,29 @@ var RootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if getGcpProjectId {
 			jsonData, err := ReadJson(JsonFile)
-            if err != nil {
-                fmt.Println(err.Error())
-            }
+			if err != nil {
+				fmt.Println(err.Error())
+			}
 			cmd.Println(jsonData.GetTargetGcpProjectId())
 		}
 		if getGitRepository {
 			jsonData, err := ReadJson(JsonFile)
-            if err != nil {
-                fmt.Println(err.Error())
-            }
+			if err != nil {
+				fmt.Println(err.Error())
+			}
 			cmd.Println(jsonData.GetGitRepository())
 		}
-        if len(args) == 0 {
-            cmd.Help()
-        }
+
+		if getVersionInfo {
+			versionInfo := version.Get()
+			fmt.Println(versionInfo.GitVersion)
+			fmt.Println(versionInfo.BuildDate)
+			fmt.Println(versionInfo.GitCommit, "\n")
+		}
+
+		if len(args) == 0 {
+			cmd.Help()
+		}
 	},
 }
 
@@ -58,6 +67,7 @@ func Execute() {
 }
 
 func init() {
+	RootCmd.Flags().BoolVarP(&getVersionInfo, "version", "v", false, "Returns the version of the binary")
 	RootCmd.PersistentFlags().StringVarP(&JsonFile, "json-file", "j", "", "Compiled dataform json file generated using dataform compile --json")
 	RootCmd.PersistentFlags().StringVarP(&location, "location", "l", "EU", "Location with with BigQuery Client will be created (optional) (default EU)")
 	RootCmd.PersistentFlags().StringVarP(&KeyFile, "key-file", "k", "", "GCP key file to use for dry run (optional)")
