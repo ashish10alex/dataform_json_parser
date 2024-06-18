@@ -18,3 +18,6 @@ test_tag_ops:
 
 test_single_table_ops_cost:
     go run . --json-file test/dpr.json table-ops cost --table=table_name
+
+debug:
+    dlv debug -- -j test/dpr.json tag-ops -u
