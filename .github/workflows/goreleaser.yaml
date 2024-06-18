@@ -1,9 +1,9 @@
 name: goreleaser
 
-# on:
-#   push:
-#     tags:
-#       - '*'
+on:
+  push:
+    tags:
+      - '*'
 
 
 # TODO:
@@ -11,8 +11,8 @@ name: goreleaser
 # Change on: when a tag is pushed
 # Change deploy.sh to be dynamic for testing locally and real release
 
-on:
-  pull_request:
+# on:
+#   pull_request:
 
 permissions:
   contents: write
