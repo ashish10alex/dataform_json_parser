@@ -31,4 +31,7 @@ jobs:
       -
         name: Run ls command
         run: ls -la
+      -
+        name: Run releaser for testing
+        run: chmod +x ./deploy.sh; ./deploy.sh
 
