@@ -5,6 +5,12 @@ name: goreleaser
 #     tags:
 #       - '*'
 
+
+# TODO:
+# Add GITHUB token
+# Change on: when a tag is pushed
+# Change deploy.sh to be dynamic for testing locally and real release
+
 on:
   pull_request:
 
@@ -28,10 +34,8 @@ jobs:
       -
         name: Show GoReleaser version
         run: goreleaser -v
-      -
-        name: Run ls command
-        run: ls -la
-      -
-        name: Run releaser for testing
-        run: chmod +x ./deploy.sh; ./deploy.sh
+
+      # -
+      #   name: Run releaser for testing
+      #   run: chmod +x ./deploy.sh; ./deploy.sh
 
