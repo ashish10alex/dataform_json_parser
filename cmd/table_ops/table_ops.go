@@ -67,7 +67,7 @@ var tableOpsCostCmd = &cobra.Command{
 			fileName := cmd.Flag("table").Value.String()
 			jsonData, err := readJson(jsonFile)
 			if err != nil {
-				fmt.Println(err.Error())
+                log.Fatal("Error parsing json: ", err.Error())
 			}
 
 			targets := jsonData.GetTargetFromFileName(fileName)
