@@ -27,6 +27,22 @@ All notable changes to this project will be documented in this file. See [standa
 * attempt using goreleaser ([9cd0884](https://github.com/ashish10alex/dj/commit/9cd08843080baf0c15613de2018fa4215f922865))
 * multiline deploy script ([47e53ff](https://github.com/ashish10alex/dj/commit/47e53ff1fe84dcac61e7b72319f941540c1c7bd9))
 * multiline install script ([8ade852](https://github.com/ashish10alex/dj/commit/8ade8522839180f37de12598bfaa01587ebf2de6))
+* release attempt ([6a33cb6](https://github.com/ashish10alex/dj/commit/6a33cb6c529f0b6ad372665900d7784884c7f736))
+
+
+### Bug Fixes
+
+* throw error if error reading json ([41cc232](https://github.com/ashish10alex/dj/commit/41cc23280d338d439dafa887c4b49ed11e79d242))
+
+### [0.0.6-pre](https://github.com/ashish10alex/dj/compare/v0.0.5...v0.0.6-pre) (2024-06-18)
+
+
+### Features
+
+* add version info when cli is build ([0103666](https://github.com/ashish10alex/dj/commit/0103666764a93bc2a3ec5923d5f173c56c9ccef1))
+* attempt using goreleaser ([9cd0884](https://github.com/ashish10alex/dj/commit/9cd08843080baf0c15613de2018fa4215f922865))
+* multiline deploy script ([47e53ff](https://github.com/ashish10alex/dj/commit/47e53ff1fe84dcac61e7b72319f941540c1c7bd9))
+* multiline install script ([8ade852](https://github.com/ashish10alex/dj/commit/8ade8522839180f37de12598bfaa01587ebf2de6))
 
 
 ### Bug Fixes
