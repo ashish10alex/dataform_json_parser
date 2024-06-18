@@ -7,7 +7,6 @@ name: goreleaser
 
 on:
   pull_request:
-  push:
 
 permissions:
   contents: write
@@ -29,4 +28,7 @@ jobs:
       -
         name: Show GoReleaser version
         run: goreleaser -v
+      -
+        name: Run ls command
+        run: ls -la
 
