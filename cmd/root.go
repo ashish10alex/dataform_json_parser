@@ -35,23 +35,18 @@ var RootCmd = &cobra.Command{
 				fmt.Println(err.Error())
 			}
 			cmd.Println(jsonData.GetTargetGcpProjectId())
-		}
-		if getGitRepository {
+		} else if getGitRepository {
 			jsonData, err := ReadJson(JsonFile)
 			if err != nil {
 				fmt.Println(err.Error())
 			}
 			cmd.Println(jsonData.GetGitRepository())
-		}
-
-		if getVersionInfo {
+		} else if getVersionInfo {
 			versionInfo := version.Get()
 			fmt.Println(versionInfo.GitVersion)
 			fmt.Println(versionInfo.BuildDate)
 			fmt.Println(versionInfo.GitCommit, "\n")
-		}
-
-		if len(args) == 0 {
+		} else {
 			cmd.Help()
 		}
 	},
