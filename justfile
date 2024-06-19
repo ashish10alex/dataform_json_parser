@@ -22,5 +22,8 @@ test_single_table_ops_cost:
 debug:
     dlv debug -- -j test/dpr.json tag-ops -u
 
-download_a_release_from_github:
-    curl -OL https://github.com/ashish10alex/dj/releases/download/v0.0.6-pre/dj_Darwin_arm64.tar.gz | tar -xzf dj_Darwin_arm64.tar.gz
+download_a_release_from_github_mac_arm:
+    curl -OL https://github.com/ashish10alex/dj/releases/download/v0.0.6-pre/dj_Darwin_arm64.tar.gz ; tar -xzf dj_Darwin_arm64.tar.gz
+
+download_a_release_from_github_linux:
+    curl -OL https://github.com/ashish10alex/dj/releases/download/v0.0.6-pre/dj_Linux_x86_64.tar.gz ; tar -xzf dj_Linux_x86_64.tar.gz
