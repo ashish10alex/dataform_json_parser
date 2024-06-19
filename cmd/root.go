@@ -45,7 +45,7 @@ var RootCmd = &cobra.Command{
 			versionInfo := version.Get()
 			fmt.Println(versionInfo.GitVersion)
 			fmt.Println(versionInfo.BuildDate)
-			fmt.Println(versionInfo.GitCommit, "\n")
+			fmt.Println(versionInfo.GitCommit)
 		} else {
 			cmd.Help()
 		}
