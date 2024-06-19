@@ -13,8 +13,8 @@ REPO_NAME="dj"
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
 
-echo $OS
-echo $ARCH
+echo "Detected OS: $OS"
+echo "Detected architecture: $ARCH"
 
 
 # if os is darwin then change it to Darwin
@@ -51,7 +51,7 @@ RELEASE_URL=$(curl -s https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releas
     grep "browser_download_url.*${OS}.*${ARCH}.*tar.gz" | cut -d '"' -f 4)
 
 
-echo $RELEASE_URL
+echo "Url to get latest release: $RELEASE_URL"
 
 # Check if the URL is empty
 if [ -z "$RELEASE_URL" ]; then
@@ -59,20 +59,21 @@ if [ -z "$RELEASE_URL" ]; then
     exit 1
 fi
 
-# Temporary directory for download and extraction
+echo "Creating temporary directory for download and extraction"
 TMP_DIR=$(mktemp -d)
 
-# Change to the temporary directory
 cd $TMP_DIR
 
-# Download the latest release
+echo "Downloading the latest release into the directory"
 curl -L -o release.tar.gz $RELEASE_URL
 
-# Extract the tar.gz file
+echo "Extracting the .tar.gz file"
 tar -xzvf release.tar.gz
 
 # Find the binary (assuming it's in the root of the tar)
 BINARY=$(find . -type f -perm +111 -exec basename {} \;)
+
+echo "Identified binary in the release as: $BINARY"
 
 # Check if the binary is found
 if [ -z "$BINARY" ]; then
@@ -80,10 +81,10 @@ if [ -z "$BINARY" ]; then
     exit 1
 fi
 
-# Move the binary to /usr/local/bin (requires sudo)
+echo "Moving the $BINARY binary to /usr/local/bin (requires sudo)"
 sudo mv $BINARY /usr/local/bin/
 
-# Make sure the binary is executable
+echo "Making the $BINARY executable"
 sudo chmod +x /usr/local/bin/$BINARY
 
 # Clean up
