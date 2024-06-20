@@ -46,6 +46,9 @@ case $ARCH in
         ;;
 esac
 
+echo "OS name for relase url template: $OS"
+echo "Architecture name for relase url template: $ARCH"
+
 # Get the latest release download URL for the appropriate tar.gz file
 RELEASE_URL=$(curl -s https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest | \
     grep "browser_download_url.*${OS}.*${ARCH}.*tar.gz" | cut -d '"' -f 4)
@@ -71,9 +74,7 @@ echo "Extracting the .tar.gz file"
 tar -xzvf release.tar.gz
 
 # Find the binary (assuming it's in the root of the tar)
-BINARY=$(find . -type f -perm +111 -exec basename {} \;)
-
-echo "Identified binary in the release as: $BINARY"
+BINARY="dj"
 
 # Check if the binary is found
 if [ -z "$BINARY" ]; then
