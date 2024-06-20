@@ -8,6 +8,7 @@ set -e
 # GitHub repository owner and name
 REPO_OWNER="ashish10alex"
 REPO_NAME="dj"
+BINARY="dj"
 
 # Detect the operating system and architecture
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -73,8 +74,6 @@ curl -L -o release.tar.gz $RELEASE_URL
 echo "Extracting the .tar.gz file"
 tar -xzvf release.tar.gz
 
-# Find the binary (assuming it's in the root of the tar)
-BINARY="dj"
 
 # Check if the binary is found
 if [ -z "$BINARY" ]; then
