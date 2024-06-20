@@ -88,7 +88,7 @@ sudo mv $BINARY /usr/local/bin/
 echo "Making the $BINARY executable"
 sudo chmod +x /usr/local/bin/$BINARY
 
-# Clean up
+echo "Going back to: "
 cd -
 rm -rf $TMP_DIR
 
