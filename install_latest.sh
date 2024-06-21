@@ -91,5 +91,6 @@ echo "Going back to: "
 cd -
 rm -rf $TMP_DIR
 
-echo "Installation completed. You can now use $BINARY."
+echo "Installation completed. "
+echo "Try $BINARY --help to see the available options"
 
