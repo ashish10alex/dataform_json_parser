@@ -145,6 +145,7 @@ changelog:
     # `<abbrev-commit>[:] <title-commit>`.
     include:
       - "^feat:"
+      - "^fix:"
 
 archives:
   - format: tar.gz
