@@ -2,8 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.0.6](https://github.com/ashish10alex/dj/compare/v0.0.6-pre...v0.0.6) (2024-06-21)
-
 ### [0.0.5](https://github.com/ashish10alex/dataform_json_parser/compare/v0.0.4...v0.0.5) (2024-06-16)
 
 
