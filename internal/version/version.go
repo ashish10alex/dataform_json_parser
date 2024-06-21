@@ -11,9 +11,17 @@ var (
 	gitVersion = "v0.0.0-main"
 	gitCommit = ""
 	buildDate = "1970-01-01T00:00:00Z" // build date in ISO8601 format
+    asciiArt = `
+     ____       _____
+    |  _ \     |___  |
+    | | | |     _  | |
+    | |_| |    | |_| |
+    |____/     |_____|
+    `
 )
 
 type VersionInfo struct {
+    AsciiArt string `json:"asciiArt" yaml:"asciiArt"`
 	GitVersion string `json:"gitVersion" yaml:"gitVersion"`
 	GitCommit string `json:"gitCommit" yaml:"gitCommit"`
 	BuildDate string `json:"buildDate" yaml:"buildDate"`
@@ -27,7 +35,9 @@ type VersionInfo struct {
 func Get() *VersionInfo {
 	// These variables typically come from -ldflags settings and in
 	// their absence fallback to the constants above
+
 	return &VersionInfo{
+        AsciiArt: asciiArt,
 		GitVersion: gitVersion,
 		GitCommit: gitCommit,
 		BuildDate: buildDate,

@@ -43,9 +43,14 @@ var RootCmd = &cobra.Command{
 			cmd.Println(jsonData.GetGitRepository())
 		} else if getVersionInfo {
 			versionInfo := version.Get()
-			fmt.Println(versionInfo.GitVersion)
-			fmt.Println(versionInfo.BuildDate)
-			fmt.Println(versionInfo.GitCommit)
+            fmt.Println(versionInfo.AsciiArt)
+            fmt.Println("dj, a command line tool to get insights on cost, errors and other metadata by parsing json data from `dataform compile --json`")
+            fmt.Println("")
+			fmt.Println("Git Version: ", versionInfo.GitVersion)
+            fmt.Println("Git Commit:  ", versionInfo.GitCommit)
+			fmt.Println("Build Date:  ", versionInfo.BuildDate)
+			fmt.Println("Go Version:  ", versionInfo.GoVersion)
+            fmt.Println("Platform:    ", versionInfo.Platform)
 		} else {
 			cmd.Help()
 		}
