@@ -6,9 +6,9 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"os"
-
+	"github.com/ashish10alex/dj/internal/version"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 const COST_IN_POUNDS_FOR_TERRABYTE float32 = 4.9
@@ -18,6 +18,7 @@ var location string
 var KeyFile string
 var getGcpProjectId bool
 var getGitRepository bool
+var getVersionInfo bool
 var ErrorTableNotFound = errors.New("Table not found")
 
 // rootCmd represents the base command when called without any subcommands
@@ -30,21 +31,29 @@ var RootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if getGcpProjectId {
 			jsonData, err := ReadJson(JsonFile)
-            if err != nil {
-                fmt.Println(err.Error())
-            }
+			if err != nil {
+				fmt.Println(err.Error())
+			}
 			cmd.Println(jsonData.GetTargetGcpProjectId())
-		}
-		if getGitRepository {
+		} else if getGitRepository {
 			jsonData, err := ReadJson(JsonFile)
-            if err != nil {
-                fmt.Println(err.Error())
-            }
+			if err != nil {
+				fmt.Println(err.Error())
+			}
 			cmd.Println(jsonData.GetGitRepository())
+		} else if getVersionInfo {
+			versionInfo := version.Get()
+            fmt.Println(versionInfo.AsciiArt)
+            fmt.Println("dj, a command line tool to get insights on cost, errors and other metadata by parsing json data from `dataform compile --json`")
+            fmt.Println("")
+			fmt.Println("Git Version: ", versionInfo.GitVersion)
+            fmt.Println("Git Commit:  ", versionInfo.GitCommit)
+			fmt.Println("Build Date:  ", versionInfo.BuildDate)
+			fmt.Println("Go Version:  ", versionInfo.GoVersion)
+            fmt.Println("Platform:    ", versionInfo.Platform)
+		} else {
+			cmd.Help()
 		}
-        if len(args) == 0 {
-            cmd.Help()
-        }
 	},
 }
 
@@ -58,6 +67,7 @@ func Execute() {
 }
 
 func init() {
+	RootCmd.Flags().BoolVarP(&getVersionInfo, "version", "v", false, "Returns the version of the binary")
 	RootCmd.PersistentFlags().StringVarP(&JsonFile, "json-file", "j", "", "Compiled dataform json file generated using dataform compile --json")
 	RootCmd.PersistentFlags().StringVarP(&location, "location", "l", "EU", "Location with with BigQuery Client will be created (optional) (default EU)")
 	RootCmd.PersistentFlags().StringVarP(&KeyFile, "key-file", "k", "", "GCP key file to use for dry run (optional)")

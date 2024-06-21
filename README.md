@@ -65,6 +65,11 @@ dj --json-file <path-to-json-file> tag-ops cost --tag <tag-name>
 
 **Latest release**
 
+```
+curl -sSfL https://raw.githubusercontent.com/ashish10alex/dj/version_cli/install_latest.sh | bash
+```
+**OR**
+
 ```bash
 go install github.com/ashish10alex/dj@latest
 ```
