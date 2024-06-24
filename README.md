@@ -34,21 +34,22 @@ Cost of of running all tables in Dataform project
 ```bash
 dj --json-file <path-to-json-file> table-ops cost --all
 ```
-OR (using stdin as input )
+**OR** (using stdin as input )
 
 ```bash
 dataform compile --json | dj table-ops cost --all
-`
-
-Cost of of running a table
-```bash
-dj --json-file <path-to-json-file> table-ops cost --table <table-name>
 ```
 
-Compiled query for a table
+Cost of of running a file
 
 ```bash
-dj --json-file <path-to-json-file> table-ops query --table <table-name>
+dj --json-file <path-to-json-file> table-ops cost --file <file-name-wo-extension>
+```
+
+Compiled query for a file
+
+```bash
+dj --json-file <path-to-json-file> table-ops query --file <file-name-wo-extension>
 ```
 
 List unique tags in Dataform project
@@ -73,13 +74,17 @@ curl -sSfL https://raw.githubusercontent.com/ashish10alex/dj/main/install_latest
 ```bash
 go install github.com/ashish10alex/dj@latest
 ```
-This instals the binary `dj` to $GOBIN, which defaults to $GOPATH/bin.
+This installs the binary `dj` to $GOBIN, which defaults to $GOPATH/bin.
 
-Or you can manually clone the repository and build the cli and add the cli to your system path
+**OR**
+
+Manually clone the repository and build the cli and add the cli to your system path
 
 ```bash
 git clone <repo-url>
-just build # this assumes that you have a ~/bin directory which is in your PATH and just cli is installed
+go build -o dj
+mv dj /usr/local/bin/dj
+
 ```
 
 ### [To BigQuery](#to-bigquery)

@@ -61,10 +61,8 @@ var tableOpsCostCmd = &cobra.Command{
 			projectId := jsonData.GetTargetGcpProjectId()
 			jsonData.GetDryRunForAllTables(projectId, keyFile, location, includeAssertions, compact)
 
-		} else if cmd.Flag("table").Value.String() != "" {
-			// NOTE: Neovim front end is passing the file name not the table name.
-			// Which is why we have the logic to infer the table name from file name
-			fileName := cmd.Flag("table").Value.String()
+		} else if cmd.Flag("file").Value.String() != "" {
+			fileName := cmd.Flag("file").Value.String()
 			jsonData, err := readJson(jsonFile)
 			if err != nil {
                 log.Fatal("Error parsing json: ", err.Error())
@@ -100,10 +98,10 @@ var tableOpsCostCmd = &cobra.Command{
 func init() {
 	cmd.RootCmd.AddCommand(tableopsCmd)
 
-	tableOpsCostCmd.Flags().BoolP("all", "a", false, "Get cost for all tables")
-	tableOpsCostCmd.Flags().BoolP("compact", "c", true, "compact af")
+	tableOpsCostCmd.Flags().BoolP("all", "a", false, "Cost for all tables")
+	tableOpsCostCmd.Flags().BoolP("compact", "c", true, "Compact JSON response. Excludes compiled query")
 	tableOpsCostCmd.Flags().BoolP("include-assertions", "i", false, "Include assertions in the cost")
-	tableOpsCostCmd.Flags().StringP("table", "t", "", "Get cost for a specific table")
+	tableOpsCostCmd.Flags().StringP("file", "f", "", "Get cost for a specific file, file name should be passed without the extension")
 	tableopsCmd.Flags().BoolP("list-tables", "u", false, "List all tables in the project")
 	tableopsCmd.AddCommand(tableOpsCostCmd)
 }

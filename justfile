@@ -17,7 +17,7 @@ test_tag_ops:
     go run . --json-file test/op.json tag-ops cost --all
 
 test_single_table_ops_cost:
-    go run . --json-file test/dpr.json table-ops cost --table=table_name
+    go run . --json-file test/dpr.json table-ops cost --file=0400_WIP_HISTORY
 
 debug:
     dlv debug -- -j test/dpr.json tag-ops -u
