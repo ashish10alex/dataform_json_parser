@@ -42,7 +42,7 @@ var tableopsCmd = &cobra.Command{
 
 var tableOpsCostCmd = &cobra.Command{
 	Use:   "cost",
-	Short: "Get cost for a specific table or all tables",
+	Short: "Get cost for a specific file or all tables",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 

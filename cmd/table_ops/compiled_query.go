@@ -9,7 +9,7 @@ import (
 
 var tableOpsQueryCmd = &cobra.Command{
 	Use:   "query",
-	Short: "Get compiled query for a specific table",
+	Short: "Get compiled query for a specific file",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 
@@ -39,7 +39,7 @@ var tableOpsQueryCmd = &cobra.Command{
 				queryForFileName += outputQuery.Query + outputQuery.IncrementalPreOpsQuery + outputQuery.IncrementalQuery + outputQuery.Assertion + outputQuery.OperationsQuery
 			}
 
-			outputFile := cmd.Flag("out-file").Value.String()
+			outputFile := cmd.Flag("out-sql-file").Value.String()
 			if outputFile != "" {
 				os.WriteFile(outputFile, []byte(*&queryForFileName), 0644)
 			} else {
@@ -51,7 +51,7 @@ var tableOpsQueryCmd = &cobra.Command{
 
 func init() {
 	tableOpsQueryCmd.Flags().StringP("file", "f", "", "Get compiled query for a specific file")
-	tableOpsQueryCmd.Flags().StringP("out-file", "o", "", "SQL file to write the compiled query to")
+	tableOpsQueryCmd.Flags().StringP("out-sql-file", "o", "", "SQL file to write the compiled query to")
 	tableopsCmd.AddCommand(tableOpsQueryCmd)
 
 }

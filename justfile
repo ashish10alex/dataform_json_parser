@@ -2,9 +2,6 @@ build:
     go build -o bin/dj
     cp bin/dj ~/bin/dj
 
-test:
-    bin/dj -h
-
 generate_completion:
     bin/dj completion zsh > ~/.zsh/completion/dj
 
@@ -30,3 +27,7 @@ download_a_release_from_github_mac_arm:
 
 download_a_release_from_github_linux:
     curl -OL https://github.com/ashish10alex/dj/releases/download/v0.0.6-pre/dj_Linux_x86_64.tar.gz ; tar -xzf dj_Linux_x86_64.tar.gz
+
+clean_cache:
+    go clean --cache
+
