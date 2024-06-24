@@ -35,7 +35,7 @@ func queryDryRun(w io.Writer, query *string, projectId string, keyfile string, l
 	q.Location = location
 
     for i:=0; i < 2; i++ {
-        ctx, cancel := context.WithTimeout(ctx, 3 * time.Second)
+        ctx, cancel := context.WithTimeout(ctx, 6 * time.Second)
         defer cancel()
 
         job, err := q.Run(ctx)
