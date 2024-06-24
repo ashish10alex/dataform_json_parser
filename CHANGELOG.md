@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/ashish10alex/dj/compare/v0.0.6...v0.0.7) (2024-06-24)
+
+
+### Bug Fixes
+
+* compiled query is generated for a file not table ([62110ba](https://github.com/ashish10alex/dj/commit/62110ba233fb77447e900caa16c4efa762c839ce))
+* increase context timeout when dry runs of many tables are requested ([af93f17](https://github.com/ashish10alex/dj/commit/af93f1787c6222aa4ba71b8a1d132e4e83f9d28f))
+* migrate to use file as argument instead of table ([a229763](https://github.com/ashish10alex/dj/commit/a229763ef1d338c5ab1615d8fc0f970ed1f01225))
+* use --file flag to get compiled query for file instead of --table ([c3516b9](https://github.com/ashish10alex/dj/commit/c3516b907450a000d56f483340f8195e08bb9e4a))
+
 ### [0.0.6](https://github.com/ashish10alex/dj/compare/v0.0.6-pre...v0.0.6) (2024-06-21)
 
 ### Features
