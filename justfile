@@ -19,6 +19,9 @@ test_tag_ops:
 test_single_table_ops_cost:
     go run . --json-file test/dpr.json table-ops cost --file=0400_WIP_HISTORY
 
+test_compiled_query:
+    go run . --json-file test/dpr.json table-ops query --file=0400_WIP_HISTORY
+
 debug:
     dlv debug -- -j test/dpr.json tag-ops -u
 

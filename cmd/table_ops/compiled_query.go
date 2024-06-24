@@ -15,9 +15,9 @@ var tableOpsQueryCmd = &cobra.Command{
 
 		jsonFile := cmd.Flag("json-file").Value.String()
 
-		if cmd.Flag("table").Value.String() != "" {
+		if cmd.Flag("file").Value.String() != "" {
 
-			fileName := cmd.Flag("table").Value.String()
+			fileName := cmd.Flag("file").Value.String()
 			jsonData, err := readJson(jsonFile)
             if err != nil {
                 fmt.Println(err.Error())
@@ -50,7 +50,7 @@ var tableOpsQueryCmd = &cobra.Command{
 }
 
 func init() {
-	tableOpsQueryCmd.Flags().StringP("table", "t", "", "Get cost for a specific table")
+	tableOpsQueryCmd.Flags().StringP("file", "f", "", "Get compiled query for a specific file")
 	tableOpsQueryCmd.Flags().StringP("out-file", "o", "", "SQL file to write the compiled query to")
 	tableopsCmd.AddCommand(tableOpsQueryCmd)
 
