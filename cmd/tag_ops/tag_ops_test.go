@@ -17,15 +17,26 @@ func TestJsonStruct_GetUniqueTags(t *testing.T) {
         fmt.Println(err.Error())
     }
 
+    noTagsJsonFile := "../../internal/test/notags.json"
+    noTagsJsonData, err := readJsonFile(noTagsJsonFile)
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+
 	tests := []struct {
 		name     string
 		input    cmd.JsonStruct
 		expected cmd.Tags
 	}{
 		{
-			name: "Unique tags example one",
+			name: "Tags available",
 			input: jsonData,
 			expected: cmd.Tags{Tags: []string{"TAG_1", "FOO", "TAG_2", "BAR"}},
+		},
+		{
+			name: "No tags in Dataform workspace",
+			input: noTagsJsonData,
+			expected: cmd.Tags{Tags: []string{}},
 		},
 	}
 
@@ -33,7 +44,7 @@ func TestJsonStruct_GetUniqueTags(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			result := tt.input.GetUniqueTags()
 			if !reflect.DeepEqual(result, tt.expected) {
-				t.Errorf("GetUniqueTags() = %v, want %v", result, tt.expected)
+                t.Errorf("GetUniqueTags() [got]: = %v, [want]: %v", result, tt.expected)
 			}
 		})
 	}
