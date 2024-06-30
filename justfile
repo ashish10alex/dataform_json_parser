@@ -31,3 +31,5 @@ download_a_release_from_github_linux:
 clean_cache:
     go clean --cache
 
+test:
+    gotestsum --format testname
